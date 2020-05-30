@@ -1,60 +1,66 @@
 <!DOCTYPE html>
 <html>
-
-	<head>
-		<title>Robot Cam</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-	</head>
+<head>
+  <title>Robot Cam</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
 
 <style>
-table ,td, tr {
-		width: 30%;
+table, td, tr {
+    width: 30%;
 }
-
 </style>
 
-	<body>
-		<img src="http://192.168.1.115:8081/" style="width:100%; max-width: 600px; max-height:600px; border-radius:10px"></img>
+<script language="javascript">
+function loadUrl() {
+    var url = "http://"+window.location.hostname+":8080/?action=stream";
+    document.getElementById("webcam").setAttribute("src", url);
+}
+</script>
 
-		<table style="width:100%; max-width: 500px; height:300px;">
-			<tr>
-				<td>
-					<form action="/1" method="POST">
-						<input type="image" name="direction" src="/static/img/left.svg" value="left" style="float:left; width:80% ;">
-						</br>
-					</form>
-				</td>
-				<td>
-					<form action="/2" method="POST">
-						<input type="image" name="direction" src="/static/img/forward.svg" value="forward" style="float:left; width:80%;">
-						</br>
-					</form>
-				</td>
-				<td>
-
-					<form action="/3" method="POST">
-						<input type="image" name="direction" src="/static/img/right.svg" value="right" style="float:left; width:80%;">
-						</br>
-					</form>
-
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<form action="/4" method="POST">
-						<input type="image" name="direction" src="/static/img/reverse.svg" value="reverse" style=" margin-left:80px; width:80%;">
-						</br>
-					</form>
-				</td>
-				<td>
-					<form action="/5" method="POST">
-						<input type="image" name="direction" src="/static/img/stop.svg" value="stop" style="margin-left:80px; width:80%;">
-						</br>
-					</form>
-				</td>
-
-			</tr>
-		</table>
-
-	</body>
+<body onload="loadUrl();">
+<table style="width:100%; max-width: 500px; height:300px;">
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+      <form action="/2" method="POST">
+        <input type="image" name="direction" src="/static/img/forward.svg" value="forward" style="float:left; width:80%;">
+        </br>
+      </form>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>
+      <form action="/1" method="POST">
+        <input type="image" name="direction" src="/static/img/left.svg" value="left" style="float:left; width:80%;">
+        </br>
+      </form>
+    </td>
+    <td>
+      <form action="/5" method="POST">
+        <input type="image" name="direction" src="/static/img/stop.svg" value="stop" style="float:left; width:80%;">
+        </br>
+      </form>
+    </td>
+    <td>
+      <form action="/3" method="POST">
+        <input type="image" name="direction" src="/static/img/right.svg" value="right" style="float:left; width:80%;">
+        </br>
+      </form>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+    <td>
+      <form action="/4" method="POST">
+        <input type="image" name="direction" src="/static/img/reverse.svg" value="reverse" style="float:left; width:80%;">
+        </br>
+      </form>
+    </td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<img id="webcam" style="width:100%; max-width: 600px; max-height:600px; border-radius:10px" />
+</body>
 </html>
