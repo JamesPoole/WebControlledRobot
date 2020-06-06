@@ -13,17 +13,22 @@ table, td, tr {
 
 <script language="javascript">
 function loadUrl() {
-    var url = "http://"+window.location.hostname+":8080/?action=stream";
-    document.getElementById("webcam").setAttribute("src", url);
+   var url = "http://"+window.location.hostname+":8080/?action=stream";
+   document.getElementById("webcam").setAttribute("src", url);
+}
+window.post = function(url) {
+   fetch(url, {method: "POST"});
+   return false;
 }
 </script>
 
 <body onload="loadUrl();">
+<img id="webcam" style="width:100%; max-width: 600px; max-height:600px; border-radius:10px" />
 <table style="width:100%; max-width: 500px; height:300px;">
   <tr>
     <td>&nbsp;</td>
     <td>
-      <form action="/2" method="POST">
+      <form onclick="return post('/2');">
         <input type="image" name="direction" src="/static/img/forward.svg" value="forward" style="float:left; width:80%;">
         </br>
       </form>
@@ -32,19 +37,19 @@ function loadUrl() {
   </tr>
   <tr>
     <td>
-      <form action="/1" method="POST">
+      <form onclick="return post('/1');">
         <input type="image" name="direction" src="/static/img/left.svg" value="left" style="float:left; width:80%;">
         </br>
       </form>
     </td>
     <td>
-      <form action="/5" method="POST">
+      <form onclick="return post('/5');">
         <input type="image" name="direction" src="/static/img/stop.svg" value="stop" style="float:left; width:80%;">
         </br>
       </form>
     </td>
     <td>
-      <form action="/3" method="POST">
+      <form onclick="return post('/3');">
         <input type="image" name="direction" src="/static/img/right.svg" value="right" style="float:left; width:80%;">
         </br>
       </form>
@@ -53,7 +58,7 @@ function loadUrl() {
   <tr>
     <td>&nbsp;</td>
     <td>
-      <form action="/4" method="POST">
+      <form onclick="return post('/4');">
         <input type="image" name="direction" src="/static/img/reverse.svg" value="reverse" style="float:left; width:80%;">
         </br>
       </form>
@@ -61,6 +66,5 @@ function loadUrl() {
     <td>&nbsp;</td>
   </tr>
 </table>
-<img id="webcam" style="width:100%; max-width: 600px; max-height:600px; border-radius:10px" />
 </body>
 </html>
